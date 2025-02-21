@@ -1,26 +1,44 @@
 <div class="feature-list">
   <h2>Product Features</h2>
 
+  <!-- Add Feature Button -->
+  <button (click)="createFeature()">Create Feature</button>
+
   <table class="feature-table">
     <thead>
-      <th>Title</th>
-      <th>Complexity</th>
-      <th>Status</th>
-      <th>Target Date</th>
-      <th>Actions</th>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Complexity</th>
+        <th>Status</th>
+        <th>Target Date</th>
+        <th>Actions</th>
+      </tr>
     </thead>
     <tbody>
       <tr *ngFor="let feature of features">
         <td>{{ feature.title }}</td>
+        <td>{{ feature.description }}</td>
         <td>{{ feature.estimatedComplexity }}</td>
         <td>{{ feature.status }}</td>
-        <td>{{ feature.targetCompletionDate | date }}</td>
+        <td>{{ feature.targetCompletionDate | date:'mediumDate' }}</td>
         <td>
-          <!-- add click functionality to the buttons -->
-          <button (click)>Edit</button>
-          <button (click)>Delete</button>
+          <button (click)="getFeature(feature.id!)">View</button>
+          <button (click)="updateFeature(feature)">Edit</button>
+          <button (click)="deleteFeature(feature.id!)">Delete</button>
         </td>
       </tr>
     </tbody>
   </table>
+
+  <!-- Selected Feature Details -->
+  <div *ngIf="selectedFeature" class="feature-details">
+    <h3>Feature Details</h3>
+    <p>Title: {{ selectedFeature.title }}</p>
+    <p>Description: {{ selectedFeature.description }}</p>
+    <p>Complexity: {{ selectedFeature.estimatedComplexity }}</p>
+    <p>Status: {{ selectedFeature.status }}</p>
+    <p>Target Date: {{ selectedFeature.targetCompletionDate | date:'mediumDate' }}</p>
+    <p>Actual Date: {{ selectedFeature.actualCompletionDate | date:'mediumDate' }}</p>
+  </div>
 </div>
