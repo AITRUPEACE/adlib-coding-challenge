@@ -2,7 +2,9 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/adlib-coding-challenge/CopilotIndices/17.12.53.23981
-/back/adlib-coding-challenge-back/.vs/adlib-coding-challenge-back/copilot-chat/0c00b725/sessions
-/back/adlib-coding-challenge-back/.vs/adlib-coding-challenge-back/CopilotIndices/17.12.53.23981
-/.vs
+.vs/
+.vsidx
+.suo
+.user
+bin/
+obj/
