@@ -40,6 +40,7 @@ namespace back_end.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
+            // TODO: Validate the product object
             // TODO: consider using service layer to encapsulate business logic
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
@@ -52,6 +53,7 @@ namespace back_end.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
+            // TODO: Validate the product object
             if (id != product.Id)
             {
                 return BadRequest();
