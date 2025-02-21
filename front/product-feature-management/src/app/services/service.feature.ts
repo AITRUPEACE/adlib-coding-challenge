@@ -7,7 +7,7 @@ import { ApiService } from './api.service';
   providedIn: 'root'
 })
 export class FeatureService extends ApiService {
-  private endpoint = 'features';
+  private endpoint = 'ProductFeature';
 
   getFeatures(): Observable<Feature[]> {
     return this.get<Feature[]>(this.endpoint);    
