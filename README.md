@@ -4,7 +4,7 @@ A web application for tracking the lifecycle of product enhancements and feature
 
 ## Project Overview
 
-This solution implements a feature management system with an Angular frontend and .NET Core Web API backend. The system allows users to create, track, and manage product features through their development lifecycle.
+This solution implements a feature management system with an Angular frontend, .NET Core Web API backend and SQL Server database. The system allows users to create, track (status and completion dates), and manage product features through their development lifecycle.
 
 ## Technical Stack
 
@@ -13,23 +13,83 @@ This solution implements a feature management system with an Angular frontend an
 - **Database**: Microsoft SQL Server
 - **Source Control**: Git
 
-## Feature Requirements
-
-### Product Feature Fields
-
-| Field Name             | Description                  | Validation Rules                                               |
-| ---------------------- | ---------------------------- | -------------------------------------------------------------- |
-| Title                  | Feature name/description     | - Required<br>- Max 1000 characters                            |
-| Description            | Detailed feature description | - Max 5000 characters                                          |
-| Estimated Complexity   | Size estimation              | - Required<br>- Allowed values: S, M, L, XL                    |
-| Status                 | Current state                | - Required<br>- Allowed values: New, Active, Closed, Abandoned |
-| Target Completion Date | Planned completion           | - Required when Status is Active<br>- Must be a future date    |
-| Actual Completion Date | Real completion date         | - Required when Status is Closed<br>- Must be a future date    |
-
 ## Development Setup
 
-1. Clone the repository
+### Prerequisites
+
+- Node.js (v18 or later)
+- .NET 8.0 SDK
+- SQL Server (Local or Express)
+- Angular CLI (`npm install -g @angular/cli`)
+
+### Backend Setup
+
+1. Navigate to the backend directory:
 
 ```bash
-git clone [repository-url]
+cd back/adlib-coding-challenge-back/back-end
 ```
+
+2. Update the connection string in `appsettings.json` to match your SQL Server instance
+
+3. Run database migrations:
+
+```bash
+dotnet ef database update
+```
+
+4. Start the backend server:
+
+```bash
+dotnet run
+```
+
+The API will be available at `https://localhost:7243`
+
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+
+```bash
+cd front/product-feature-management
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the development server:
+
+```bash
+ng serve
+```
+
+The application will be available at `http://localhost:4200`
+
+## Running Tests
+
+### Backend Tests
+
+```bash
+cd back/adlib-coding-challenge-back/back-end
+dotnet test
+```
+
+### Frontend Tests
+
+```bash
+cd front/product-feature-management
+ng test
+```
+
+## Usage
+
+1. Start both the backend and frontend servers
+2. Navigate to `http://localhost:4200` in your browser
+3. Use the interface to manage product features:
+   - View all features
+   - Create new features
+   - Edit existing features
+   - Delete features
