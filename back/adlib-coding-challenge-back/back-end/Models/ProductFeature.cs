@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Backend.Models
 {
-    public class Product
+    public class ProductFeature
     {
         [Key]
         public int Id { get; set; }
