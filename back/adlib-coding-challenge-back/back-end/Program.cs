@@ -13,6 +13,14 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "Adlib Coding Challenge Api", Version = "v1" });
 });
+// CORS configuration to allow our Angular app to hit the API
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200", "https://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
