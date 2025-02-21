@@ -21,7 +21,8 @@ namespace Backend.Migrations
                     EstimatedComplexity = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TargetCompletionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ActualCompletionDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    ActualCompletionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: false, defaultValue: "")
                 },
                 constraints: table =>
                 {
