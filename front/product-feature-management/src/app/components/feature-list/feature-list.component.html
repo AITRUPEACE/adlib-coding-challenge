@@ -4,7 +4,19 @@
   <!-- Add Feature Button -->
   <button (click)="createFeature()">Create Feature</button>
 
-  <table class="feature-table">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">
+    Loading features...
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="error-state">
+    {{ error }}
+    <button (click)="loadFeatures()">Try Again</button>
+  </div>
+
+  <!-- Feature Table -->
+  <table *ngIf="!isLoading && !error" class="feature-table">
     <thead>
       <tr>
         <th>Title</th>
@@ -26,6 +38,11 @@
           <button (click)="getFeature(feature.id!)">View</button>
           <button (click)="updateFeature(feature)">Edit</button>
           <button (click)="deleteFeature(feature.id!)">Delete</button>
+        </td>
+      </tr>
+      <tr *ngIf="features.length === 0">
+        <td colspan="6" class="no-features">
+          No features found. Click "Create Feature" to add one.
         </td>
       </tr>
     </tbody>

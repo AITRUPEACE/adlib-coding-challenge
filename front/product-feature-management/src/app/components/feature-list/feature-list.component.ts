@@ -13,6 +13,8 @@ import { Feature } from '../../models/feature';
 export class FeatureListComponent implements OnInit {
   features: Feature[] = [];
   selectedFeature: Feature | null = null;
+  isLoading = false;
+  error: string | null = null;
 
   constructor(private featureService: FeatureService) {}
 
@@ -22,13 +24,18 @@ export class FeatureListComponent implements OnInit {
   }
 
   loadFeatures(): void {
+    this.isLoading = true;
+    this.error = null;
+    
     this.featureService.getFeatures().subscribe({
       next: (features) => {
         this.features = features;
+        this.isLoading = false;
       },
       error: (error) => {
         console.error('Error loading features:', error);
-        // Consider toast!
+        this.error = 'Failed to load features. Please try again later.';
+        this.isLoading = false;
       }
     });
   }
