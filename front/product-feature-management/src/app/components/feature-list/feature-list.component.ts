@@ -3,11 +3,12 @@ import { DatePipe, CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FeatureService } from '../../services/service.feature';
 import { Feature } from '../../models/feature';
+import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-feature-list',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, ConfirmationModalComponent],
   templateUrl: './feature-list.component.html',
   styleUrls: ['./feature-list.component.scss']
 })
@@ -16,6 +17,10 @@ export class FeatureListComponent implements OnInit {
   selectedFeature: Feature | null = null;
   isLoading = false;
   error: string | null = null;
+
+  // Modal state
+  showDeleteModal = false;
+  featureToDelete: Feature | null = null;
 
   constructor(private featureService: FeatureService) {}
 
@@ -70,7 +75,7 @@ export class FeatureListComponent implements OnInit {
         console.log('Feature created:', createdFeature);
         // Add the new feature to the list or refresh the list
         this.features = [...this.features, createdFeature];
-        // Or alternatively we can call this.loadFeatures() to refresh the lis from the server;
+        // Or alternatively we can call this.loadFeatures() to refresh the list from the server;
         // Consider toast!
       },
       error: (error) => {
@@ -92,7 +97,7 @@ export class FeatureListComponent implements OnInit {
           f.id === updatedFeature.id ? updatedFeature : f
         );
         this.selectedFeature = null;
-        // Or alternatively we can call this.loadFeatures() to refresh the lis from the server;
+        // Or alternatively we can call this.loadFeatures() to refresh the list from the server;
         // Consider toast!
       },
       error: (error) => {
@@ -102,13 +107,31 @@ export class FeatureListComponent implements OnInit {
     });
   }
 
+  // New methods for delete confirmation
+  openDeleteModal(feature: Feature) {
+    this.featureToDelete = feature;
+    this.showDeleteModal = true;
+  }
+
+  closeDeleteModal() {
+    this.showDeleteModal = false;
+    this.featureToDelete = null;
+  }
+
+  confirmDelete() {
+    if (this.featureToDelete?.id) {
+      this.deleteFeature(this.featureToDelete.id);
+      this.closeDeleteModal();
+    }
+  }
+
   deleteFeature(id: number) {
     this.featureService.deleteFeature(id).subscribe({
       next: () => {
         console.log('Feature deleted:', id);
         // Remove the feature from the list
         this.features = this.features.filter(f => f.id !== id);
-        // Or alternatively we can call this.loadFeatures() to refresh the lis from the server;
+        // Or alternatively we can call this.loadFeatures() to refresh the list from the server;
         // Consider toast!
       },
       error: (error) => {

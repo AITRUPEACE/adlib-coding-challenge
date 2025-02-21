@@ -37,7 +37,7 @@
         <td>
           <button (click)="getFeature(feature.id!)">View</button>
           <button (click)="updateFeature(feature)">Edit</button>
-          <button (click)="deleteFeature(feature.id!)">Delete</button>
+          <button (click)="openDeleteModal(feature)">Delete</button>
         </td>
       </tr>
       <tr *ngIf="features.length === 0">
@@ -58,4 +58,14 @@
     <p>Target Date: {{ selectedFeature.targetCompletionDate | date:'mediumDate' }}</p>
     <p>Actual Date: {{ selectedFeature.actualCompletionDate | date:'mediumDate' }}</p>
   </div>
+
+  <!-- Confirmation Modal -->
+  <app-confirmation-modal
+    [isOpen]="showDeleteModal"
+    title="Delete Feature"
+    [message]="'Are you sure you want to delete the feature \'' + (featureToDelete?.title || '') + '\'?'"
+    confirmButtonText="Delete"
+    (confirm)="confirmDelete()"
+    (cancel)="closeDeleteModal()"
+  ></app-confirmation-modal>
 </div>
