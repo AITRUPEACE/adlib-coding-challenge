@@ -19,6 +19,7 @@
   <table *ngIf="!isLoading && !error" class="feature-table">
     <thead>
       <tr>
+        <th>ID</th>
         <th>Title</th>
         <th>Complexity</th>
         <th>Status</th>
@@ -28,6 +29,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let feature of features">
+        <td>{{ feature.id }}</td>
         <td>{{ feature.title }}</td>
         <td>{{ feature.estimatedComplexity }}</td>
         <td>{{ feature.status }}</td>
