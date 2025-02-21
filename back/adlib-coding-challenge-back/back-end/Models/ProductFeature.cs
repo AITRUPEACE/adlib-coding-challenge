@@ -13,6 +13,10 @@ namespace Backend.Models
         public string Title { get; set; }
 
         [Required]
+        [MaxLength(5000)]
+        public string Description { get; set;  }
+
+        [Required]
         // Allowed values: S, M, L, XL
         [RegularExpression("S|M|L|XL")]
         public string EstimatedComplexity { get; set; }

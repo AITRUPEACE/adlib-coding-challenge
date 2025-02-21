@@ -20,7 +20,6 @@
     <thead>
       <tr>
         <th>Title</th>
-        <th>Description</th>
         <th>Complexity</th>
         <th>Status</th>
         <th>Target Date</th>
@@ -30,7 +29,6 @@
     <tbody>
       <tr *ngFor="let feature of features">
         <td>{{ feature.title }}</td>
-        <td>{{ feature.description }}</td>
         <td>{{ feature.estimatedComplexity }}</td>
         <td>{{ feature.status }}</td>
         <td>{{ feature.targetCompletionDate | date:'mediumDate' }}</td>
