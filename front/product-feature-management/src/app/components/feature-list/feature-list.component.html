@@ -21,9 +21,10 @@
       <tr>
         <th>ID</th>
         <th>Title</th>
-        <th>Complexity</th>
+        <th>Estimated Complexity</th>
         <th>Status</th>
-        <th>Target Date</th>
+        <th>Target Completion Date</th>
+        <th>Actual Completion Date</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -34,9 +35,10 @@
         <td>{{ feature.estimatedComplexity }}</td>
         <td>{{ feature.status }}</td>
         <td>{{ feature.targetCompletionDate | date:'mediumDate' }}</td>
+        <td>{{ feature.actualCompletionDate | date:'mediumDate' }}</td>
         <td>
           <button (click)="getFeature(feature.id!)">View</button>
-          <button (click)="updateFeature(feature)">Edit</button>
+          <button [routerLink]="['/feature/edit', feature.id]">Edit</button>
           <button (click)="openDeleteModal(feature)">Delete</button>
         </td>
       </tr>
@@ -53,10 +55,10 @@
     <h3>Feature Details</h3>
     <p>Title: {{ selectedFeature.title }}</p>
     <p>Description: {{ selectedFeature.description }}</p>
-    <p>Complexity: {{ selectedFeature.estimatedComplexity }}</p>
+    <p>Estimated Complexity: {{ selectedFeature.estimatedComplexity }}</p>
     <p>Status: {{ selectedFeature.status }}</p>
-    <p>Target Date: {{ selectedFeature.targetCompletionDate | date:'mediumDate' }}</p>
-    <p>Actual Date: {{ selectedFeature.actualCompletionDate | date:'mediumDate' }}</p>
+    <p>Target Completion Date: {{ selectedFeature.targetCompletionDate | date:'mediumDate' }}</p>
+    <p>Actual Completion Date: {{ selectedFeature.actualCompletionDate | date:'mediumDate' }}</p>
   </div>
 
   <!-- Confirmation Modal -->
