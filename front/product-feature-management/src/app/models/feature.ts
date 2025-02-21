@@ -1,10 +1,9 @@
 export interface Feature {
-  id: number;
+  id?: number;  // Optional for creation, required after saved
   title: string;
-  description?: string;
-  estimatedComplexity: 'S' | 'M' | 'L' |
-   'XL';
-   status: 'New' | 'Active' | 'Closed' | 'Abandoned';
-   targetCompletionDate?: Date;
-   actualCompletionDate?: Date;
+  description: string;  // Required
+  estimatedComplexity: 'S' | 'M' | 'L' | 'XL';
+  status: 'New' | 'Active' | 'Closed' | 'Abandoned';
+  targetCompletionDate: Date;  // Required
+  actualCompletionDate: Date;  // Required
 }

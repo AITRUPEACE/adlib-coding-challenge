@@ -1,0 +1,26 @@
+<div class="feature-list">
+  <h2>Product Features</h2>
+
+  <table class="feature-table">
+    <thead>
+      <th>Title</th>
+      <th>Complexity</th>
+      <th>Status</th>
+      <th>Target Date</th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let feature of features">
+        <td>{{ feature.title }}</td>
+        <td>{{ feature.estimatedComplexity }}</td>
+        <td>{{ feature.status }}</td>
+        <td>{{ feature.targetCompletionDate | date }}</td>
+        <td>
+          <!-- add click functionality to the buttons -->
+          <button (click)>Edit</button>
+          <button (click)>Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

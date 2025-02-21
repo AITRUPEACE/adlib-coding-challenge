@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FeatureService} from '../services/service.feature';
-import {Feature} from '../models/feature';
+import {FeatureService} from '../../services/service.feature';
+import {Feature} from '../../models/feature';
 
 @Component({
   selector: 'app-feature-list',
