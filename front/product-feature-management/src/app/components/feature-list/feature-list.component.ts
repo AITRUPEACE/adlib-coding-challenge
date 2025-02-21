@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe, CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { FeatureService } from '../../services/service.feature';
 import { Feature } from '../../models/feature';
 
 @Component({
   selector: 'app-feature-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './feature-list.component.html',
   styleUrls: ['./feature-list.component.scss']
 })

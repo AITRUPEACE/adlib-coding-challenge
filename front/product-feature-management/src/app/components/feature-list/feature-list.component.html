@@ -2,7 +2,7 @@
   <h2>Product Features</h2>
 
   <!-- Add Feature Button -->
-  <button (click)="createFeature()">Create Feature</button>
+  <button [routerLink]="['/feature/create']" class="create-button">Create New Feature</button>
 
   <!-- Loading State -->
   <div *ngIf="isLoading" class="loading-state">
@@ -42,7 +42,7 @@
       </tr>
       <tr *ngIf="features.length === 0">
         <td colspan="6" class="no-features">
-          No features found. Click "Create Feature" to add one.
+          No features found. Click "Create New Feature" to add one.
         </td>
       </tr>
     </tbody>

@@ -1,0 +1,87 @@
+<div class="feature-create">
+  <h2>Create New Feature</h2>
+
+  <!-- Error Message -->
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <!-- Feature Form -->
+  <form [formGroup]="featureForm" (ngSubmit)="onSubmit()" class="feature-form">
+    <div class="form-group">
+      <label for="title">Title *</label>
+      <input
+        id="title"
+        type="text"
+        formControlName="title"
+        placeholder="Enter feature title"
+      >
+      <div *ngIf="featureForm.get('title')?.invalid && featureForm.get('title')?.touched" class="error-hint">
+        Title is required and must be less than 1,000 characters
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description *</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        placeholder="Enter feature description"
+        rows="4"
+      ></textarea>
+      <div *ngIf="featureForm.get('description')?.invalid && featureForm.get('description')?.touched" class="error-hint">
+        Description is required and must be less than 5,000 characters
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="estimatedComplexity">Estimated Complexity *</label>
+      <select id="estimatedComplexity" formControlName="estimatedComplexity">
+        <option *ngFor="let option of complexityOptions" [value]="option">
+          {{ option }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="status">Status *</label>
+      <select id="status" formControlName="status">
+        <option *ngFor="let option of statusOptions" [value]="option">
+          {{ option }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="targetCompletionDate">Target Completion Date *</label>
+      <input
+        id="targetCompletionDate"
+        type="date"
+        formControlName="targetCompletionDate"
+      >
+      <div *ngIf="featureForm.get('targetCompletionDate')?.invalid && featureForm.get('targetCompletionDate')?.touched" class="error-hint">
+        Target completion date is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="actualCompletionDate">Actual Completion Date</label>
+      <input
+        id="actualCompletionDate"
+        type="date"
+        formControlName="actualCompletionDate"
+      >
+    </div>
+
+    <div class="form-actions">
+      <button type="button" (click)="onCancel()" class="btn-secondary">Cancel</button>
+      <button 
+        type="submit" 
+        [disabled]="featureForm.invalid || isLoading"
+        class="btn-primary"
+      >
+        {{ isLoading ? 'Creating...' : 'Create Feature' }}
+      </button>
+    </div>
+  </form>
+</div> 
